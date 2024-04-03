@@ -69,16 +69,16 @@ export default function TextFrom(props) {
             <div className='mb-3'>
             <textarea className='form-control' value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'gray':'white',color: props.mode==='dark'?'white':'black'}} id='myBox' rows='8'></textarea>
             </div>
-            <button className='btn btn-primary mx-2' onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className='btn btn-primary mx-2' onClick={handleLoClick}>Convert to Lowercase</button>
-            <button className='btn btn-primary mx-2' onClick={handleClearClick}>Clear Text</button>
-            <button className='btn btn-primary mx-2' onClick={handleFirstUpperClick}>Capitalize Text</button>
-            <button className='btn btn-primary mx-2' onClick={handleCopy}>Copy Text</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2' onClick={handleUpClick}>Convert to Uppercase</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2' onClick={handleLoClick}>Convert to Lowercase</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2' onClick={handleClearClick}>Clear Text</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2' onClick={handleFirstUpperClick}>Capitalize Text</button>
+            <button disabled={text.length===0} className='btn btn-primary mx-2' onClick={handleCopy}>Copy Text</button>
         </div>
         <div className='container my-3' style={{color: props.mode==='dark'?'white':'black'}}>
             <h2>Your Text Summary</h2>
             <p>{wordCount(text)} words and {charCount(text)} characters</p>
-            <p>{0.008 * text.split(' ').length} Minutes read</p>
+            <p>{0.008 * text.split(' ').filter(word=>{return word.length!==0}).length} Minutes read</p>
         </div>
         <div className='container my-3' style={{color: props.mode==='dark'?'white':'black'}}>
             <h2>Preview</h2>
